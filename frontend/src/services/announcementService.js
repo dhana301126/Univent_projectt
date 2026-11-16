@@ -1,7 +1,6 @@
 ﻿import axios from 'axios';
 
-const API_URL = 'http://localhost:8003/api/announcements';
-
+const API_URL = 'https://YOUR-NOTIFICATION-SERVICE.onrender.com/api/announcements';
 // Create axios instance
 const announcementAPI = axios.create({
   baseURL: API_URL,
