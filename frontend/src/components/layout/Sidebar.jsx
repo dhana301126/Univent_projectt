@@ -63,8 +63,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
               </li>
             )}
             
-            {/* Home - Only visible to participants */}
-            {!isAdmin && !isOrganizer && (
+            {/* Home - Visible to participants and organizers */}
+            {!isAdmin && (
               <li>
                 <Link to="/home" className="flex items-center px-4 py-3 hover:bg-blue-700 rounded-md mx-2 transition-all duration-200">
                   <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

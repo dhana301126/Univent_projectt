@@ -4,9 +4,15 @@ import { LoginForm } from '../components/auth';
 const LoginPage = () => {
   const navigate = useNavigate();
 
-  const handleLoginSuccess = () => {
-    // Redirect to dashboard or home page after successful login
-    navigate('/home');
+  const handleLoginSuccess = (user) => {
+    // Dynamically route based on user role from single login
+    if (user?.role === 'admin') {
+      navigate('/admindashboard');
+    } else if (user?.role === 'organizer') {
+      navigate('/organizerdashboard');
+    } else {
+      navigate('/home');
+    }
   };
 
   return (

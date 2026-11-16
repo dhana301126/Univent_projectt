@@ -11,7 +11,7 @@ const { OAuth2Client } = require('google-auth-library');
  */
 exports.register = async (req, res, next) => {
   try {
-    const { firstName, lastName, email, password, college } = req.body;
+    const { firstName, lastName, email, password, college, role } = req.body;
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
@@ -22,13 +22,19 @@ exports.register = async (req, res, next) => {
       });
     }
 
+    // Determine role (participant or organizer)
+    const userRole = (role && ['organizer', 'participant'].includes(role.toLowerCase()))
+      ? role.toLowerCase()
+      : 'participant';
+
     // Create new user
     const user = await User.create({
       firstName,
       lastName,
       email,
       password,
-      college
+      college,
+      role: userRole
     });
 
     // Generate JWT token

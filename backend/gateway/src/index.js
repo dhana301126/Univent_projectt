@@ -41,7 +41,7 @@ app.use(cors({
 // Note: Do NOT use express.json() before proxies as it drains the request body stream
 
 // Service endpoints
-const AUTH_SERVICE = process.env.AUTH_SERVICE || 'http://localhost:8001';
+const AUTH_SERVICE = process.env.AUTH_SERVICE || 'https://univent-auth-service-g30p.onrender.com';
 const EVENT_SERVICE = process.env.EVENT_SERVICE || 'http://localhost:8002';
 const NOTIFICATION_SERVICE = process.env.NOTIFICATION_SERVICE || 'http://localhost:8003';
 const LEADERBOARD_SERVICE = process.env.LEADERBOARD_SERVICE || 'http://localhost:8004';

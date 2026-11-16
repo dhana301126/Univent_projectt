@@ -38,6 +38,8 @@ const RegisterForm = ({ onSuccess }) => {
       .oneOf([Yup.ref('password')], 'Passwords must match'),
     college: Yup.string()
       .required('College name is required'),
+    role: Yup.string()
+      .oneOf(['participant', 'organizer']),
     acceptTerms: Yup.boolean()
       .oneOf([true], 'You must accept the terms and conditions')
   });
@@ -50,6 +52,7 @@ const RegisterForm = ({ onSuccess }) => {
       password: '',
       confirmPassword: '',
       college: '',
+      role: 'participant',
       acceptTerms: false
     },
     validationSchema: registerSchema,
@@ -243,6 +246,36 @@ const RegisterForm = ({ onSuccess }) => {
           {formik.touched.college && formik.errors.college && (
             <p className="text-red-500 text-xs mt-1">{formik.errors.college}</p>
           )}
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            I am joining as
+          </label>
+          <div className="grid grid-cols-2 gap-3">
+            <button
+              type="button"
+              className={`py-2 px-3 rounded-md font-medium text-xs sm:text-sm transition-all border ${
+                formik.values.role === 'participant'
+                  ? 'bg-blue-600 text-white border-blue-600 shadow'
+                  : 'bg-gray-100 text-gray-700 border-gray-300 hover:bg-gray-200'
+              }`}
+              onClick={() => formik.setFieldValue('role', 'participant')}
+            >
+              🎓 Participant
+            </button>
+            <button
+              type="button"
+              className={`py-2 px-3 rounded-md font-medium text-xs sm:text-sm transition-all border ${
+                formik.values.role === 'organizer'
+                  ? 'bg-blue-600 text-white border-blue-600 shadow'
+                  : 'bg-gray-100 text-gray-700 border-gray-300 hover:bg-gray-200'
+              }`}
+              onClick={() => formik.setFieldValue('role', 'organizer')}
+            >
+              🎪 Event Organizer
+            </button>
+          </div>
         </div>
 
         <div className="mb-4">
