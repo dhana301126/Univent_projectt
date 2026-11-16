@@ -1,4 +1,4 @@
-﻿import axios from 'axios';
+import axios from 'axios';
 
 const BASE_URL = import.meta.env.VITE_API_GATEWAY_URL || import.meta.env.VITE_NOTIFICATION_SERVICE_URL || 'https://univent-api-gateway.onrender.com';
 const API_URL = `${BASE_URL}/api/announcements`;

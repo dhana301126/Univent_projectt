@@ -1,0 +1,92 @@
+services:
+  - type: web
+    name: univent-auth-service
+    runtime: node
+    plan: free
+    rootDir: backend/auth-service
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_REFRESH_SECRET
+        sync: false
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASS
+        sync: false
+
+  - type: web
+    name: univent-event-service
+    runtime: node
+    plan: free
+    rootDir: backend/event-service
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+
+  - type: web
+    name: univent-notification-service
+    runtime: node
+    plan: free
+    rootDir: backend/notification-service
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+
+  - type: web
+    name: univent-leaderboard-service
+    runtime: node
+    plan: free
+    rootDir: backend/leaderboard-service
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+
+  - type: web
+    name: univent-settings-service
+    runtime: node
+    plan: free
+    rootDir: backend/settings-service
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+
+  - type: web
+    name: univent-api-gateway
+    runtime: node
+    plan: free
+    rootDir: backend/gateway
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: AUTH_SERVICE
+        sync: false
+      - key: EVENT_SERVICE
+        sync: false
+      - key: NOTIFICATION_SERVICE
+        sync: false
+      - key: LEADERBOARD_SERVICE
+        sync: false
+      - key: SETTINGS_SERVICE
+        sync: false
+      - key: CLIENT_URL
+        sync: false

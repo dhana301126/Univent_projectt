@@ -1,4 +1,4 @@
-﻿import axios from 'axios';
+import axios from 'axios';
 
 // Base URL for event service
 const GATEWAY_URL = import.meta.env.VITE_API_GATEWAY_URL || 'https://univent-api-gateway.onrender.com';
