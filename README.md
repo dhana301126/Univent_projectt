@@ -39,38 +39,11 @@ Univent is designed using a **microservice architecture** to ensure scalability,
 - **Notification Service**: Powers real-time announcements and user notifications via Socket.IO.
 - **Leaderboard Service**: Manages participant scoring, ranking calculations, and live leaderboard updates.
 
-## 🏁 Getting Started
-
 ### Prerequisites
 - Node.js (v14 or higher)
 - MongoDB (v4.4 or higher)
 - npm or yarn
 - Docker (optional, for containerized setup)
-
-3.  **Environment Variables Setup:**
-    Create a `.env` file in each service's root directory (`auth-service`, `event-service`, etc.) and add the required environment variables.
-    ```bash
-    # Example for auth-service/.env:
-    MONGODB_URI=mongodb://localhost:27017/univent
-    JWT_SECRET=your_super_secret_jwt_key
-    PORT=8001
-    ```
-
-4.  **Run the Application:**
-    ```bash
-    # Option 1: Start all services using Docker (Recommended)
-    docker-compose up
-
-    # Option 2: Start each service and the frontend individually
-    # Terminal 1: Auth Service
-    cd backend/auth-service && npm run dev
-    # Terminal 2: Event Service
-    cd backend/event-service && npm run dev
-    # ...and so on for other services
-
-    # Terminal 5: Frontend
-    cd frontend && npm start
-    ```
 
 ## 👤 User Roles and Permissions
 
