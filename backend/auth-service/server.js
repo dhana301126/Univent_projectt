@@ -51,6 +51,9 @@ const connectDB = require('./src/config/db.config');
 // Connect to MongoDB
 connectDB();
 
+// Health check
+app.get('/health', (req, res) => res.json({ status: 'ok', service: 'auth-service' }));
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);

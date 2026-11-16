@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-const { createProxyMiddleware } = require('http-proxy-middleware');
+const { createProxyMiddleware, fixRequestBody } = require('http-proxy-middleware');
 const dotenv = require('dotenv');
 const rateLimit = require('express-rate-limit');
 
@@ -38,7 +38,7 @@ app.use(cors({
   credentials: true,
   optionsSuccessStatus: 200
 })); // Enable CORS for all routes
-app.use(express.json()); // Parse JSON request body
+// Note: Do NOT use express.json() before proxies as it drains the request body stream
 
 // Service endpoints
 const AUTH_SERVICE = process.env.AUTH_SERVICE || 'http://localhost:8001';
@@ -50,6 +50,24 @@ const SETTINGS_SERVICE = process.env.SETTINGS_SERVICE || 'http://localhost:8005'
 // Proxy middleware options
 const proxyOptions = {
   changeOrigin: true,
+  timeout: 60000,
+  proxyTimeout: 60000,
+  on: {
+    proxyReq: fixRequestBody,
+    error: (err, req, res) => {
+      console.error(`[Proxy Error] ${req.method} ${req.url}:`, err.message);
+      if (!res.headersSent) {
+        res.status(502).json({ success: false, message: 'Service temporarily unavailable. Please retry shortly.', error: err.message });
+      }
+    }
+  },
+  onProxyReq: fixRequestBody,
+  onError: (err, req, res) => {
+    console.error(`[Proxy Error] ${req.method} ${req.url}:`, err.message);
+    if (!res.headersSent) {
+      res.status(502).json({ success: false, message: 'Service temporarily unavailable. Please retry shortly.', error: err.message });
+    }
+  },
   pathRewrite: {
     '^/api/auth': '/api/auth',
     '^/api/events': '/api/events',
