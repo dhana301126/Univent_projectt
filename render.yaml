@@ -3,6 +3,7 @@ services:
     name: univent-auth-service
     runtime: node
     plan: free
+    autoDeploy: true
     rootDir: backend/auth-service
     buildCommand: npm install
     startCommand: npm start
@@ -22,6 +23,7 @@ services:
     name: univent-event-service
     runtime: node
     plan: free
+    autoDeploy: true
     rootDir: backend/event-service
     buildCommand: npm install
     startCommand: npm start
@@ -35,6 +37,7 @@ services:
     name: univent-notification-service
     runtime: node
     plan: free
+    autoDeploy: true
     rootDir: backend/notification-service
     buildCommand: npm install
     startCommand: npm start
@@ -48,6 +51,7 @@ services:
     name: univent-leaderboard-service
     runtime: node
     plan: free
+    autoDeploy: true
     rootDir: backend/leaderboard-service
     buildCommand: npm install
     startCommand: npm start
@@ -61,6 +65,7 @@ services:
     name: univent-settings-service
     runtime: node
     plan: free
+    autoDeploy: true
     rootDir: backend/settings-service
     buildCommand: npm install
     startCommand: npm start
@@ -74,6 +79,7 @@ services:
     name: univent-api-gateway
     runtime: node
     plan: free
+    autoDeploy: true
     rootDir: backend/gateway
     buildCommand: npm install
     startCommand: npm start
