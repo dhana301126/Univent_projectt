@@ -68,15 +68,7 @@ const proxyOptions = {
       res.status(502).json({ success: false, message: 'Service temporarily unavailable. Please retry shortly.', error: err.message });
     }
   },
-  pathRewrite: {
-    '^/api/auth': '/api/auth',
-    '^/api/events': '/api/events',
-    '^/api/notifications': '/api/notifications',
-    '^/api/announcements': '/api/announcements',
-    '^/api/leaderboard': '/api/leaderboard',
-    '^/api/settings': '/api/settings',
-    '^/api/admin': '/api/admin'
-  }
+  pathRewrite: (path, req) => req.originalUrl
 };
 
 // Proxy routes

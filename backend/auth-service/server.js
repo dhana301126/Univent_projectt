@@ -60,11 +60,12 @@ app.use('/api/admin', adminRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({
+  console.error(err.stack || err);
+  const statusCode = err.statusCode || (err.name === 'ValidationError' ? 400 : 500);
+  res.status(statusCode).json({
     success: false,
-    message: 'Internal Server Error',
-    error: process.env.NODE_ENV === 'development' ? err.message : undefined
+    message: err.message || 'Internal Server Error',
+    error: err.message
   });
 });
 
