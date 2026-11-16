@@ -1,11 +1,11 @@
 # Univent - Real-Time College Event Management System (MERN Stack)
 
-## 🚀 Overview
+##  Overview
 Univent is a comprehensive, real-time event management platform designed specifically for the dynamic environment of colleges and universities. Built on the **MERN stack (MongoDB, Express.js, React.js, Node.js)** with a **microservice architecture**, it provides a centralized system for organizing and participating in college fests, workshops, and technical events. The platform features live announcements and interactive leaderboards to boost engagement and streamline communication between organizers and participants.
 
 This open-source project is a perfect example of a full-stack web application using modern technologies like **Socket.IO for real-time communication** and **JWT for secure authentication**.
 
-## ✨ Key Features
+##  Key Features
 Univent is packed with features to create a seamless event experience:
 
 - 🎫 **Full Event Lifecycle Management**: Create, update, delete, and manage events.
@@ -21,7 +21,7 @@ Univent is packed with features to create a seamless event experience:
   <p><em>Event Management Interface for College Fests</em></p>
 </div>
 
-## 🛠️ Technology Stack
+##  Technology Stack
 This project uses a modern and scalable technology stack:
 
 - **Frontend**: **React.js** with **TailwindCSS** for a responsive and beautiful UI.
@@ -31,7 +31,7 @@ This project uses a modern and scalable technology stack:
 - **Authentication**: **JWT (JSON Web Tokens)** for secure, stateless authentication.
 - **Containerization**: **Docker** and Docker Compose for easy setup and deployment.
 
-## 🏛️ System Architecture
+##  System Architecture
 Univent is designed using a **microservice architecture** to ensure scalability, maintainability, and independent deployment of services. An **API Gateway** acts as a single entry point for all client requests, routing them to the appropriate downstream service.
 
 - **Authentication Service**: Manages user registration, login, and JWT token generation.
@@ -45,7 +45,7 @@ Univent is designed using a **microservice architecture** to ensure scalability,
 - npm or yarn
 - Docker (optional, for containerized setup)
 
-## 👤 User Roles and Permissions
+##  User Roles and Permissions
 
 | Role | Access Level | Responsibilities |
 |:--- |:--- |:--- |
@@ -72,7 +72,7 @@ Univent is designed using a **microservice architecture** to ensure scalability,
   </table>
 </div>
 
-## 📂 Project Structure
+##  Project Structure
 The repository is organized into a `frontend` directory for the React client and a `backend` directory containing the microservices.
 
 ```
@@ -92,10 +92,3 @@ univent/
 │
 └── docker-compose.yml    # Docker configuration for all services
 ```
-
-## Credits
-
-Originally developed by Abhishek Balija.
-Modified and maintained by dhana301126.
-
-Licensed under the MIT License. See LICENSE.md.
