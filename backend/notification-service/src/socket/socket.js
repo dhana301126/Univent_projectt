@@ -8,12 +8,12 @@ const socketIO = require('socket.io');
 const initializeSocket = (server) => {
   const io = socketIO(server, {
     cors: {
-      origin: [
-        process.env.CLIENT_URL,
-        'http://localhost:5173',
-        'http://localhost:5174',
-        'https://univento.vercel.app'
-      ].filter(Boolean),
+      origin: (origin, callback) => {
+        if (!origin || origin.includes('localhost') || origin.endsWith('.vercel.app') || (process.env.CLIENT_URL && origin === process.env.CLIENT_URL)) {
+          return callback(null, true);
+        }
+        return callback(null, true);
+      },
       methods: ['GET', 'POST'],
       credentials: true
     }

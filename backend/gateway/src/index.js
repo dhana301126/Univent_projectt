@@ -26,8 +26,14 @@ app.use(limiter);
 // Middleware
 app.use(helmet()); // Set security headers
 app.use(cors({
-  origin: [process.env.CLIENT_URL, 'http://localhost:5173', 'https://univento.vercel.app'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps, curl, etc.) or any vercel / localhost origin
+    if (!origin || origin.includes('localhost') || origin.endsWith('.vercel.app') || (process.env.CLIENT_URL && origin === process.env.CLIENT_URL)) {
+      return callback(null, true);
+    }
+    return callback(null, true);
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
   optionsSuccessStatus: 200
@@ -48,6 +54,7 @@ const proxyOptions = {
     '^/api/auth': '/api/auth',
     '^/api/events': '/api/events',
     '^/api/notifications': '/api/notifications',
+    '^/api/announcements': '/api/announcements',
     '^/api/leaderboard': '/api/leaderboard',
     '^/api/settings': '/api/settings',
     '^/api/admin': '/api/admin'
@@ -59,6 +66,7 @@ app.use('/api/auth', createProxyMiddleware({ ...proxyOptions, target: AUTH_SERVI
 app.use('/api/admin', createProxyMiddleware({ ...proxyOptions, target: AUTH_SERVICE }));
 app.use('/api/events', createProxyMiddleware({ ...proxyOptions, target: EVENT_SERVICE }));
 app.use('/api/notifications', createProxyMiddleware({ ...proxyOptions, target: NOTIFICATION_SERVICE }));
+app.use('/api/announcements', createProxyMiddleware({ ...proxyOptions, target: NOTIFICATION_SERVICE }));
 app.use('/api/leaderboard', createProxyMiddleware({ ...proxyOptions, target: LEADERBOARD_SERVICE }));
 app.use('/api/settings', createProxyMiddleware({ ...proxyOptions, target: SETTINGS_SERVICE }));
 

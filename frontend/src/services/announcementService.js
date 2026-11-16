@@ -1,6 +1,7 @@
 ﻿import axios from 'axios';
 
-const API_URL = 'https://YOUR-NOTIFICATION-SERVICE.onrender.com/api/announcements';
+const BASE_URL = import.meta.env.VITE_API_GATEWAY_URL || import.meta.env.VITE_NOTIFICATION_SERVICE_URL || 'https://univent-api-gateway.onrender.com';
+const API_URL = `${BASE_URL}/api/announcements`;
 // Create axios instance
 const announcementAPI = axios.create({
   baseURL: API_URL,

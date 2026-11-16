@@ -1,7 +1,8 @@
 ﻿import axios from 'axios';
 
 // Base URL for settings service through the API gateway
-const API_URL = 'https://univent-api-gateway.onrender.com/api/settings';
+const GATEWAY_URL = import.meta.env.VITE_API_GATEWAY_URL || 'https://univent-api-gateway.onrender.com';
+const API_URL = `${GATEWAY_URL}/api/settings`;
 // Create axios instance with default config
 const settingsApi = axios.create({
   baseURL: API_URL,
