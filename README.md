@@ -47,28 +47,6 @@ Univent is designed using a **microservice architecture** to ensure scalability,
 - npm or yarn
 - Docker (optional, for containerized setup)
 
-### Installation Guide
-
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/AbhishekBalija/Univent.git](https://github.com/AbhishekBalija/Univent.git)
-    cd univent
-    ```
-
-2.  **Install server and client dependencies:**
-    ```bash
-    # Install frontend dependencies
-    cd frontend
-    npm install
-
-    # Install backend dependencies for each microservice
-    cd ../backend
-    cd auth-service && npm install
-    cd ../event-service && npm install
-    cd ../notification-service && npm install
-    cd ../leaderboard-service && npm install
-    ```
-
 3.  **Environment Variables Setup:**
     Create a `.env` file in each service's root directory (`auth-service`, `event-service`, etc.) and add the required environment variables.
     ```bash
