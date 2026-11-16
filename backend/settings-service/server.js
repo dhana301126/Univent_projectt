@@ -29,8 +29,13 @@ app.use(limiter);
 // Middleware
 app.use(helmet()); // Set security headers
 app.use(cors({
-  origin: [process.env.CLIENT_URL, 'http://localhost:5173', 'https://univento.vercel.app'], // Allow CORS from frontend
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  origin: (origin, callback) => {
+    if (!origin || origin.includes('localhost') || origin.endsWith('.vercel.app') || (process.env.CLIENT_URL && origin === process.env.CLIENT_URL)) {
+      return callback(null, true);
+    }
+    return callback(null, true);
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
   optionsSuccessStatus: 200

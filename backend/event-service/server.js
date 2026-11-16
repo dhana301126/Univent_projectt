@@ -35,13 +35,13 @@ app.use(helmet());
 
 // CORS options - FIXED
 const corsOptions = {
-  origin: [
-    process.env.CLIENT_URL,
-    "http://localhost:5173",
-    "http://localhost:5174",
-    "https://univento.vercel.app",
-  ].filter(Boolean),
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: (origin, callback) => {
+    if (!origin || origin.includes('localhost') || origin.endsWith('.vercel.app') || (process.env.CLIENT_URL && origin === process.env.CLIENT_URL)) {
+      return callback(null, true);
+    }
+    return callback(null, true);
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
   optionsSuccessStatus: 200,
